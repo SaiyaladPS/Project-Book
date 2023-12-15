@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2023 at 12:12 PM
+-- Generation Time: Dec 15, 2023 at 07:51 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -93,8 +93,14 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`o_id`, `bill_no`, `book_id`, `o_qty`, `sprice`, `amount`, `o_date`, `o_time`, `remark`, `user_id`) VALUES
-(1, '', '2222', 2, 400000.00, 800000.00, '2023-12-14', '00:21:15', '', 2),
-(2, '', '2222', 2, 400000.00, 800000.00, '2023-12-14', '21:01:33', '', 2);
+(15, '', '2222', 1, 300000.00, 300000.00, '2023-12-16', '00:00:00', '', 2),
+(16, '', '33333', 2, 300000.00, 600000.00, '2023-12-16', '00:00:00', '', 2),
+(17, '', '2222', 2, 300000.00, 600000.00, '2023-12-16', '00:00:00', '', 2),
+(18, '', '33333', 2, 300000.00, 600000.00, '2023-12-16', '00:00:00', '', 2),
+(19, '', '2222', 1, 300000.00, 300000.00, '2023-12-16', '01:09:15', '', 2),
+(20, '', '33333', 2, 300000.00, 600000.00, '2023-12-16', '01:09:15', '', 2),
+(21, '', '33333', 1, 300000.00, 300000.00, '2023-12-16', '01:20:30', '', 5),
+(22, '', '2222', 2, 300000.00, 600000.00, '2023-12-16', '01:20:30', '', 5);
 
 -- --------------------------------------------------------
 
@@ -103,7 +109,7 @@ INSERT INTO `orders` (`o_id`, `bill_no`, `book_id`, `o_qty`, `sprice`, `amount`,
 --
 
 CREATE TABLE `products` (
-  `book_id` varchar(5) NOT NULL,
+  `book_id` varchar(255) NOT NULL,
   `cate_id` int(5) NOT NULL,
   `book_name` varchar(99) NOT NULL,
   `img` varchar(255) NOT NULL,
@@ -121,7 +127,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`book_id`, `cate_id`, `book_name`, `img`, `authors`, `press`, `qty`, `bprice`, `sprice`, `remark`, `user_id`) VALUES
-('2222', 5, 'Harry potter2', 'harry potter.JPG', 'ໂມ່ຊຽງຖົງຊິ່ວ', 'peijing', 100, 300000.00, 400000.00, '', 2),
+('2222', 5, 'Harry potter', 'harry potter.JPG', 'ໂມ່ຊຽງຖົງຊິ່ວ', 'peijing', 100, 300000.00, 400000.00, '', 2),
 ('33333', 5, 'ປະລຳມະຈານລັດທິມານ(The untamed)', 'IMG_8289.JPG', 'ໂມ່ຊຽງຖົງຊິ່ວ', 'peijing', 100, 300000.00, 400000.00, '', 2);
 
 -- --------------------------------------------------------
@@ -155,7 +161,7 @@ INSERT INTO `provinces` (`pro_id`, `pro_name`, `remark`, `user_id`) VALUES
 CREATE TABLE `receives` (
   `r_id` int(5) NOT NULL,
   `bill_no` varchar(99) NOT NULL,
-  `book_id` varchar(5) NOT NULL,
+  `book_id` varchar(255) NOT NULL,
   `r_qty` int(5) NOT NULL,
   `bprice` decimal(12,2) NOT NULL,
   `amount` decimal(12,2) NOT NULL,
@@ -200,8 +206,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `pro_id`, `dis_id`, `vill_id`, `fname`, `lname`, `dob`, `gender`, `tel`, `username`, `status`, `password`, `remark`) VALUES
-(2, 6, 1, 1, 'Nee', 'MP', '2005-02-11', 'F', '020584747436', 'nee', 'admin', '123', ''),
-(3, 6, 1, 1, 'ມະນີ', 'ຄໍາທາວົງ', '2005-02-11', 'ຍິງ', '02094237977', 'Nunee', 'ຜູ້ບໍລິຫານ', '*0801D10217B06C5A9F32430C1A34E030D41A0257', '');
+(2, 6, 1, 1, 'Nee', 'MP', '2005-02-11', 'F', '020584747436', 'nee1', 'ຜູ້ບໍລິຫານ', '123', ''),
+(3, 6, 1, 1, 'ມະນີ', 'ຄໍາທາວົງ', '2005-02-11', 'ຍິງ', '02094237977', 'Nunee', 'ພະນັກງານ', '*40898AF06FC5A43897EA2B8778475F87533923D5', ''),
+(4, 6, 1, 1, 'jay', 'ph', '2023-12-04', 'ຊາຍ', '2055484484', 'jay', 'ຜູ້ບໍລິຫານ', '*A7347AF75E3207C23567FEEAEB6CD5624A1BFFE6', ''),
+(5, 6, 1, 1, 'nee', 'HO', '2023-12-01', 'ຍິງ', '24444444', 'nee', 'ຜູ້ບໍລິຫານ', '*23AE809DDACAF96AF0FD78ED04B6A265E05AA257', '');
 
 -- --------------------------------------------------------
 
@@ -300,7 +308,7 @@ ALTER TABLE `villages`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cate_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `cate_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `districts`
@@ -312,7 +320,7 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `o_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `o_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `provinces`
@@ -330,7 +338,7 @@ ALTER TABLE `receives`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `villages`
