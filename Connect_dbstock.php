@@ -1,0 +1,13 @@
+<?php
+$server="localhost";
+$user="root";
+$password="";
+$db_name="db_book";
+$connect=mysqli_connect($server,$user,$password,$db_name);
+mysqli_set_charset($connect,"utf8");
+if($connect){
+	//echo"fff";
+}else{
+	echo"ການເຊືອມໂຍງຫຼົ້ມເຫຼວ";
+}
+?>
